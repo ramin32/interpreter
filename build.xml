@@ -1,0 +1,41 @@
+<project name="Interpreter" default="run" basedir=".">
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+    <property name="lib" location="lib"/>
+
+    <target name="init" depends="clean">
+        <mkdir dir="${build}"/>
+        <mkdir dir="${dist}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${build}"> 
+            <compilerarg value="-Xlint"/>
+        </javac>
+            
+    </target>
+
+    <target name="dist" depends="compile">
+        <jar jarfile="${dist}/${ant.project.name}.jar" basedir="${build}">
+            <manifest>
+                <attribute name="Main-Class" value="interpreter.Interpreter"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="dist" description="Runs executable jar file.">
+        <java jar="${dist}/${ant.project.name}.jar" fork="true">
+            <arg value="test.txt"/>
+        </java>
+    </target>
+
+
+
+    <target name="clean">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
+
+</project>
+
