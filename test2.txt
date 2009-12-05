@@ -1,0 +1,331 @@
+L1:	a = 0
+L3:	b = 0
+L4:	b = 1
+L6:	a = 2
+L7:	b = 3
+L8:	a = a + 1
+L9:	b = b + 1
+L5:	a = a + 1
+L10:	b = b + 1
+L2:
+L1:	i = 0
+L3:	i = 365
+L4:	x = 0.0
+L5:	x = 3.1415896
+L6:	b = true
+L7:	b = false
+L8:	i = x
+L9:	x = i
+L2:
+L1:	a = b + c
+L3:	a = b - c
+L4:	a = b * c
+L5:	a = b / c
+L6:	a = minus b
+L7:	t1 = a - b
+	d = t1 - c
+L8:	t2 = a * b
+	d = t2 * c
+L9:	t3 = b * c
+	d = a + t3
+L10:	t4 = a * b
+	d = t4 + c
+L11:	t5 = a - b
+	d = t5 - c
+L12:	t6 = b - c
+	d = a - t6
+L13:	t7 = a + b
+	d = t7 * c
+L14:	t8 = b + c
+	d = a * t8
+L15:	t9 = b * b
+	t10 = 4.0 * a
+	t11 = t10 * c
+	term = t9 - t11
+L2:
+L1:	if x < y goto L4
+	t1 = true
+	goto L5
+L4:	t1 = false
+L5:	r = t1
+L3:	iffalse x == y goto L7
+	t2 = true
+	goto L8
+L7:	t2 = false
+L8:	r = t2
+L6:	if x > y goto L11
+L10:	r = true
+	goto L9
+L11:	r = false
+L9:	iffalse x != y goto L13
+L12:	r = true
+	goto L2
+L13:	r = false
+L2:
+L1:	t1 = i * 12
+	t2 = j * 4
+	t3 = t1 + t2
+	t4 = a [ t3 ]
+	x = c + t4
+L3:	t5 = i * 12
+	t6 = j * 4
+	t7 = t5 + t6
+	a [ t7 ] = 0
+L4:	t8 = i * 100
+	t9 = j * 10
+	t10 = t8 + t9
+	t11 = k * 1
+	t12 = t10 + t11
+	b [ t12 ] = true
+L5:	t13 = i * 100
+	t14 = j * 10
+	t15 = t13 + t14
+	t16 = k * 1
+	t17 = t15 + t16
+	d = b [ t17 ]
+L2:
+L1:	i = 0
+L3:	iffalse i < 10 goto L4
+L5:	j = 0
+L6:	iffalse j < 10 goto L7
+L8:	t1 = i * 80
+	t2 = j * 8
+	t3 = t1 + t2
+	a [ t3 ] = 0.0
+L9:	j = j + 1
+	goto L6
+L7:	i = i + 1
+	goto L3
+L4:	i = 0
+L10:	iffalse i < 10 goto L2
+L11:	t4 = i * 80
+	t5 = i * 8
+	t6 = t4 + t5
+	a [ t6 ] = 1.0
+L12:	i = i + 1
+	goto L10
+L2:
+L1:	i = 0
+L3:L5:	j = 0
+L6:L8:	t1 = i * 80
+	t2 = j * 8
+	t3 = t1 + t2
+	a [ t3 ] = 0.0
+L9:	iffalse j >= 10 goto L6
+L10:	goto L7
+	goto L6
+L7:	iffalse i >= 10 goto L3
+L11:	goto L4
+	goto L3
+L4:	i = 0
+L12:L13:	t4 = i * 80
+	t5 = i * 8
+	t6 = t4 + t5
+	a [ t6 ] = 1.0
+L14:	iffalse i >= 10 goto L12
+L15:	goto L2
+	goto L12
+L2:
+L1:L4:	a = 0
+L3:	goto L5
+L6:	x = 0
+L5:	iffalse a < b goto L7
+L8:	a = b
+L7:	iffalse x <= y goto L9
+L10:	x = y
+L9:	iffalse a == b goto L11
+L12:	a = b
+L11:	iffalse x != y goto L13
+L14:	x = y
+L13:	iffalse a >= b goto L15
+L16:	b = a
+L15:	iffalse x > y goto L17
+L18:	y = x
+L17:	iffalse a == b goto L19
+L20:L19:	if x < 100 goto L23
+	iffalse x > 200 goto L21
+L23:L22:	x = 0
+L21:	iffalse a < 100 goto L24
+	iffalse a > 200 goto L24
+L25:	b = 0
+L24:	if x < 100 goto L28
+	iffalse x > 200 goto L26
+	iffalse x != y goto L26
+L28:L27:	x = 0
+L26:	if a < 100 goto L31
+	iffalse a > 200 goto L32
+	if a != 150 goto L31
+L32:	iffalse a != 0 goto L29
+L31:L30:	a = 0
+L29:	iffalse x > 200 goto L36
+	if x != b goto L35
+L36:	iffalse x < 100 goto L33
+L35:L34:	x = 0
+L33:	if a < 100 goto L38
+	iffalse a > 200 goto L2
+	iffalse a != b goto L2
+L38:L37:	a = 0
+L2:
+L1:	r = true
+L3:	r = false
+L4:	iffalse a < b goto L6
+	t1 = true
+	goto L7
+L6:	t1 = false
+L7:	r = t1
+L5:	iffalse x <= y goto L9
+	t2 = true
+	goto L10
+L9:	t2 = false
+L10:	r = t2
+L8:	iffalse a == b goto L12
+	t3 = true
+	goto L13
+L12:	t3 = false
+L13:	r = t3
+L11:	iffalse x != y goto L15
+	t4 = true
+	goto L16
+L15:	t4 = false
+L16:	r = t4
+L14:	iffalse a >= b goto L18
+	t5 = true
+	goto L19
+L18:	t5 = false
+L19:	r = t5
+L17:	iffalse x > y goto L21
+	t6 = true
+	goto L22
+L21:	t6 = false
+L22:	r = t6
+L20:	if x < 100 goto L26
+	iffalse x > 200 goto L24
+L26:	t7 = true
+	goto L25
+L24:	t7 = false
+L25:	r = t7
+L23:	iffalse a < 100 goto L28
+	iffalse a > 200 goto L28
+	t8 = true
+	goto L29
+L28:	t8 = false
+L29:	r = t8
+L27:	if x < 100 goto L33
+	iffalse x > 200 goto L31
+	iffalse x != y goto L31
+L33:	t9 = true
+	goto L32
+L31:	t9 = false
+L32:	r = t9
+L30:	if a < 100 goto L37
+	iffalse a > 200 goto L38
+	if a != 150 goto L37
+L38:	iffalse a != 0 goto L35
+L37:	t10 = true
+	goto L36
+L35:	t10 = false
+L36:	r = t10
+L34:	iffalse x > 200 goto L43
+	if x != b goto L42
+L43:	iffalse x < 100 goto L40
+L42:	t11 = true
+	goto L41
+L40:	t11 = false
+L41:	r = t11
+L39:	if a < 100 goto L46
+	iffalse a > 200 goto L44
+	iffalse a != b goto L44
+L46:	t12 = true
+	goto L45
+L44:	t12 = false
+L45:	r = t12
+L2:
+L1:	r = b
+L3:	t1 = i * 1
+	r = a [ t1 ]
+L4:	t2 = i * 1
+	a [ t2 ] = b
+L5:	t3 = i * 1
+	a [ t3 ] = true
+L6:	t4 = i * 1
+	a [ t4 ] = false
+L7:	iffalse b goto L8
+L9:	x = y
+L8:	t5 = i * 1
+	t6 = a [ t5 ]
+	iffalse t6 goto L2
+L10:	x = y
+L2:
+L1:L3:	i = i + 1
+L5:	t1 = i * 8
+	t2 = a [ t1 ]
+	if t2 < v goto L3
+L4:	j = j - 1
+L7:	t3 = j * 8
+	t4 = a [ t3 ]
+	if t4 > v goto L4
+L6:	iffalse i >= j goto L8
+L9:	goto L2
+L8:	t5 = i * 8
+	x = a [ t5 ]
+L10:	t6 = i * 8
+	t7 = j * 8
+	t8 = a [ t7 ]
+	a [ t6 ] = t8
+L11:	t9 = j * 8
+	a [ t9 ] = x
+	goto L1
+L2:
+L1:	r = a
+L3:	dd = d
+L4:	iffalse dd <= r goto L5
+L6:	dd = 2 * dd
+	goto L4
+L5:	iffalse dd != r goto L2
+L7:	dd = dd / 2
+L8:	iffalse dd <= r goto L5
+L9:	r = r - dd
+	goto L5
+L2:
+L1:	prod = 0
+L3:	i = 1
+L4:	t1 = i * 8
+	t2 = a [ t1 ]
+	t3 = i * 8
+	t4 = b [ t3 ]
+	t5 = t2 * t4
+	prod = prod + t5
+L6:	i = i + 1
+L5:	if i <= 20 goto L4
+L2:
+L1:	i = 0
+L3:	iffalse i < 10 goto L4
+L5:	j = 0
+L6:	iffalse j < 10 goto L7
+L8:	t1 = i * 80
+	t2 = j * 8
+	t3 = t1 + t2
+	a [ t3 ] = 0
+L9:	j = j + 1
+	goto L6
+L7:	i = i + 1
+	goto L3
+L4:	i = 0
+L10:	iffalse i < 10 goto L2
+L11:	t4 = i * 80
+	t5 = i * 8
+	t6 = t4 + t5
+	a [ t6 ] = 1
+L12:	i = i + 1
+	goto L10
+L2:
+L1:L3:	if peek == BLANK goto L7
+	iffalse peek == TAB goto L6
+L7:L5:	goto L4
+L6:	iffalse peek == NEWLINE goto L9
+L8:	line = line + 1
+	goto L4
+L9:	goto L2
+L4:	peek = readch
+	goto L1
+L2:

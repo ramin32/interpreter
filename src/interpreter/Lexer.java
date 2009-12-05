@@ -1,16 +1,14 @@
 package interpreter;
-import java.util.Map;
-import java.util.HashMap;
+import interpreter.TokenValue;
+import interpreter.TokenType;
 import java.util.Scanner;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.io.File;
-
-import interpreter.Token;
     
 public class Lexer
 {
-    public static List<Token> tokenizeFile(String fileName)
+    public static List<TokenValue> tokenizeFile(String fileName)
     {
         try
         {
@@ -18,17 +16,16 @@ public class Lexer
                                      useDelimiter("\\Z+").
                                      next().
                                      split("\\s+");
-            List<Token> tokenList = new ArrayList<Token>();
+            List<TokenValue> tokenList = new ArrayList<TokenValue>();
             for(String token: tokens)
             {
-                Token t = matchToken(token);
-                if(t == null)
+                TokenValue tokenValue = computeTokenValue(token);
+                if(tokenValue == null)
                 {
                     throw new RuntimeException("Syntax error: " + token);
                 }
-                tokenList.add(t);
+                tokenList.add(tokenValue);
             }
-            System.out.println(tokenList);
             return tokenList;
 
         }
@@ -40,32 +37,16 @@ public class Lexer
         return null;
     }
 
-    public static Token matchToken(String input)
+    public static TokenValue computeTokenValue(String input)
     {
-        for(Token token: Token.values())
+        for(TokenType token: TokenType.values())
         {
             if(input.matches(token.pattern()))
             {
-                return new Token(tokenEnum, input);
+                return new TokenValue(token, input);
             }
         }
         return null;
     }
 }
 
-class TokenValue()
-{
-    Token token_;
-    String value_;
-
-   public TokenValue(Token token, String value)
-   {
-       token_ = token;
-       value_ = value;
-   } 
-
-   public String toString()
-   {
-       return token_ + " " + value_;
-   }
-}
