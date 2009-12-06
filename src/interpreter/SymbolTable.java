@@ -37,6 +37,7 @@ public class SymbolTable
             throw new IllegalArgumentException("Illegal data type: " + value);
         identifierTable_.put(id, value);
     }
+
     public Object lookupIdentifier(String id)
     {
         return identifierTable_.get(id);

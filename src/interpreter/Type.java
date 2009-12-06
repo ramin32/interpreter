@@ -26,8 +26,7 @@ public enum Type
     LE ("<=") {public Object evaluate(double x, double y) { return x <= y;}},
     GE (">=") {public Object evaluate(double x, double y) { return x >= y;}},
     E ("==") {public Object evaluate(double x, double y) { return x == y;}},
-    NE ("!=") {public Object evaluate(double x, double y) { return x != y;}},
-    EOF ("EOF");
+    NE ("!=") {public Object evaluate(double x, double y) { return x != y;}};
 
     public final static List<Type> OPERATORS = 
         Arrays.asList(new Type[]{ PLUS, MINUS,TIMES, DIVIDE, L, G, LE, GE, E, NE });

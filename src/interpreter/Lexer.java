@@ -30,7 +30,6 @@ public class Lexer
                 }
                 tokens.add(token);
             }
-            tokens.add(new Token(Type.EOF));
 
             return tokens;
         }
