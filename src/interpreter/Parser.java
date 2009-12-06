@@ -4,76 +4,44 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.ListIterator;
 import interpreter.Lexer;
-import interpreter.TokenValue;
-import interpreter.TokenType;
+import interpreter.Token;
+import interpreter.Type;
 import interpreter.SymbolTable;
 
 public class Parser
 {
-    private int index_;
-    private final List<TokenValue> tokens_;
     private final SymbolTable symbolTable_;
-
-    public Parser(List<TokenValue> tokens)
+    public Parser(List<Token> tokens)
     {
-        index_ = 0;
-        tokens_ = tokens;
-        symbolTable_ = new SymbolTable(tokens);
+        Map<String,Integer> labels = extractLabels(tokens);
+        symbolTable_ = new SymbolTable();
+        System.out.println(tokens);
+        System.out.println(labels);
+        symbolTable_.addLabelMapping(labels);
     }
 
-    public void parseProgram()
+    private static Map<String, Integer> extractLabels(List<Token> tokens)
     {
-        parseExpr();
-    }
-
-    private void parseAssignment()
-    {
-
-       if(tokens_.get(index_).is(TokenType.IDENTIFIER) && tokens_.get(index_ + 1).is(TokenType.ASSIGNMENT))
-       {
-           index_ += 2;
-           symbolTable_.addIdentifier(tokens_.get(index_).getValue(), parseOperation());
-       }
-    }
-
-    private Object parseOperation()
-    {
-        TokenValue tokenValue = tokens_.get(index_ + 1);
-        if(tokenValue.isOp())
+        Map<String, Integer> labelTable = new HashMap<String, Integer>();
+        ListIterator<Token> iterator = tokens.listIterator();
+        while(iterator.hasNext())
         {
-            Object result = tokenValue.evaluate(extractValue(index_),extractValue(index_ + 2));
-            index_ += 3;
-            return result;
+            int index = iterator.nextIndex();
+            Token token = iterator.next();
+            if(token.isType(Type.LABEL))
+            {
+                String[] labels = splitLabels(token.getValue());
+                for(String l: labels)
+                    labelTable.put(l, index);
+                iterator.remove();
+            }
         }
-
-        index_++;
-        return extractValue(index_ - 1);
+        return labelTable;
     }
-
-    private Double extractValue(int index)
+    public static String[] splitLabels(String string)
     {
-        TokenValue tokenValue = tokens_.get(index_);
-        if(tokenValue.is(TokenType.IDENTIFIER))
-            return (Double) symbolTable_.getIdentifier(tokenValue.getValue());
-        else if(tokenValue.is(TokenType.NUMBER))
-            return Double.parseDouble(tokenValue.getValue());
-        return null;
-    }
-    
-    private Boolean parseRelation()
-    {
-        return true;
-    }
-    
-    private void parseExpr()
-    {
-         
-       if(tokens_.get(index_).is(TokenType.PRINT))
-       {
-          System.out.println(tokens_.get(++index_).getValue()); 
-       }
-       if(tokens_.get(index_).is(TokenType.HALT))
-           System.exit(1);
+        return string.split(":");
     }
 }
