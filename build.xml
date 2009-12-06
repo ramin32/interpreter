@@ -3,6 +3,7 @@
     <property name="build" location="build"/>
     <property name="dist" location="dist"/>
     <property name="lib" location="lib"/>
+    <taskdef resource="checkstyletask.properties" classpath="${lib}/checkstyle-all-5.0"/>
 
     <target name="init" depends="clean">
         <mkdir dir="${build}"/>
@@ -26,7 +27,7 @@
 
     <target name="run" depends="dist" description="Runs executable jar file.">
         <java jar="${dist}/${ant.project.name}.jar" fork="true">
-            <arg value="test.txt"/>
+            <arg value="test2.txt"/>
         </java>
     </target>
 

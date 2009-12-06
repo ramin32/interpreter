@@ -65,24 +65,24 @@ L2:
 L1:	t1 = i * 12
 	t2 = j * 4
 	t3 = t1 + t2
-	t4 = a [ t3 ]
+	t4 = a 
 	x = c + t4
 L3:	t5 = i * 12
 	t6 = j * 4
 	t7 = t5 + t6
-	a [ t7 ] = 0
+	a  = 0
 L4:	t8 = i * 100
 	t9 = j * 10
 	t10 = t8 + t9
 	t11 = k * 1
 	t12 = t10 + t11
-	b [ t12 ] = true
+	b  = true
 L5:	t13 = i * 100
 	t14 = j * 10
 	t15 = t13 + t14
 	t16 = k * 1
 	t17 = t15 + t16
-	d = b [ t17 ]
+	d = b 
 L2:
 L1:	i = 0
 L3:	iffalse i < 10 goto L4
@@ -91,7 +91,7 @@ L6:	iffalse j < 10 goto L7
 L8:	t1 = i * 80
 	t2 = j * 8
 	t3 = t1 + t2
-	a [ t3 ] = 0.0
+	a  = 0.0
 L9:	j = j + 1
 	goto L6
 L7:	i = i + 1
@@ -101,7 +101,7 @@ L10:	iffalse i < 10 goto L2
 L11:	t4 = i * 80
 	t5 = i * 8
 	t6 = t4 + t5
-	a [ t6 ] = 1.0
+	a  = 1.0
 L12:	i = i + 1
 	goto L10
 L2:
@@ -110,7 +110,7 @@ L3:L5:	j = 0
 L6:L8:	t1 = i * 80
 	t2 = j * 8
 	t3 = t1 + t2
-	a [ t3 ] = 0.0
+	a  = 0.0
 L9:	iffalse j >= 10 goto L6
 L10:	goto L7
 	goto L6
@@ -121,7 +121,7 @@ L4:	i = 0
 L12:L13:	t4 = i * 80
 	t5 = i * 8
 	t6 = t4 + t5
-	a [ t6 ] = 1.0
+	a  = 1.0
 L14:	iffalse i >= 10 goto L12
 L15:	goto L2
 	goto L12
@@ -242,38 +242,38 @@ L45:	r = t12
 L2:
 L1:	r = b
 L3:	t1 = i * 1
-	r = a [ t1 ]
+	r = a 
 L4:	t2 = i * 1
-	a [ t2 ] = b
+	a  = b
 L5:	t3 = i * 1
-	a [ t3 ] = true
+	a  = true
 L6:	t4 = i * 1
-	a [ t4 ] = false
+	a  = false
 L7:	iffalse b goto L8
 L9:	x = y
 L8:	t5 = i * 1
-	t6 = a [ t5 ]
+	t6 = a 
 	iffalse t6 goto L2
 L10:	x = y
 L2:
 L1:L3:	i = i + 1
 L5:	t1 = i * 8
-	t2 = a [ t1 ]
+	t2 = a 
 	if t2 < v goto L3
 L4:	j = j - 1
 L7:	t3 = j * 8
-	t4 = a [ t3 ]
+	t4 = a 
 	if t4 > v goto L4
 L6:	iffalse i >= j goto L8
 L9:	goto L2
 L8:	t5 = i * 8
-	x = a [ t5 ]
+	x = a 
 L10:	t6 = i * 8
 	t7 = j * 8
-	t8 = a [ t7 ]
-	a [ t6 ] = t8
+	t8 = a 
+	a  = t8
 L11:	t9 = j * 8
-	a [ t9 ] = x
+	a  = x
 	goto L1
 L2:
 L1:	r = a
@@ -290,9 +290,9 @@ L2:
 L1:	prod = 0
 L3:	i = 1
 L4:	t1 = i * 8
-	t2 = a [ t1 ]
+	t2 = a 
 	t3 = i * 8
-	t4 = b [ t3 ]
+	t4 = b 
 	t5 = t2 * t4
 	prod = prod + t5
 L6:	i = i + 1
@@ -305,7 +305,7 @@ L6:	iffalse j < 10 goto L7
 L8:	t1 = i * 80
 	t2 = j * 8
 	t3 = t1 + t2
-	a [ t3 ] = 0
+	a  = 0
 L9:	j = j + 1
 	goto L6
 L7:	i = i + 1
@@ -315,7 +315,7 @@ L10:	iffalse i < 10 goto L2
 L11:	t4 = i * 80
 	t5 = i * 8
 	t6 = t4 + t5
-	a [ t6 ] = 1
+	a  = 1
 L12:	i = i + 1
 	goto L10
 L2:

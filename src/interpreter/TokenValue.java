@@ -26,6 +26,16 @@ class TokenValue
        return type == type_;
    }
 
+   public boolean isOp()
+   {
+       return type_.isOp();
+   }
+
+   public Object evaluate(double x, double y)
+   {
+       return type_.evaluate(x,y);
+   }
+
    public String toString()
    {
        return type_ + " " + value_;

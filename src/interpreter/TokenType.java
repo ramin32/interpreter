@@ -15,22 +15,19 @@ public enum TokenType{
         FALSE ("false"),
         IDENTIFIER ("\\p{Alpha}\\w*"),
         ASSIGNMENT ("="),
-        PLUS ("\\+"),
-        MINUS ("-"),
-        TIMES ("\\*"),
-        DIVIDE ("/"),
-        L ("<"),
-        G (">"),
-        LE ("<="),
-        GE (">="),
-        E ("=="),
-        NE ("!=");
+        PLUS ("\\+") {public Object evaluate(double x, double y) { return x + y;}},
+        MINUS ("-") {public Object evaluate(double x, double y) { return x - y;}},
+        TIMES ("\\*") {public Object evaluate(double x, double y) { return x * y;}},
+        DIVIDE ("/") {public Object evaluate(double x, double y) { return x / y;}},
+        L ("<") {public Object evaluate(double x, double y) { return x < y;}},
+        G (">") {public Object evaluate(double x, double y) { return x > y;}},
+        LE ("<=") {public Object evaluate(double x, double y) { return x <= y;}},
+        GE (">=") {public Object evaluate(double x, double y) { return x >= y;}},
+        E ("==") {public Object evaluate(double x, double y) { return x == y;}},
+        NE ("!=") {public Object evaluate(double x, double y) { return x != y;}};
 
-        public final static List<TokenType> OPERATORS = Arrays.asList(new TokenType[] 
-                                                        { PLUS, MINUS,TIMES, DIVIDE });
-
-        public final static List<TokenType> RELATIONS = Arrays.asList(new TokenType[] 
-                                                        { L, G, LE, GE, E, NE });
+        public final static List<TokenType> OPERATORS = 
+          Arrays.asList(new TokenType[]{ PLUS, MINUS,TIMES, DIVIDE, L, G, LE, GE, E, NE });
 
         private final String pattern_;
         TokenType(String pattern)
@@ -43,14 +40,14 @@ public enum TokenType{
            return OPERATORS.contains(this); 
         }
         
-        public boolean isRelation()
-        {
-           return RELATIONS.contains(this); 
-        }
-
         public String pattern() 
         {
             return pattern_;
+        }
+
+        public Object evaluate(double x, double y)
+        {
+            throw new UnsupportedOperationException("Not implemented for: " + this);
         }
 
 }
