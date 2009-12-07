@@ -1,7 +1,5 @@
 package interpreter;
 import java.util.List;
-import java.util.Arrays;
-import interpreter.Type;
 
 public class Token
 {
@@ -31,7 +29,7 @@ public class Token
                     return new Token(type);
             }
         }
-        return null;
+        throw new RuntimeException("Syntax error: " + input);
     }
 
     public Type getType()

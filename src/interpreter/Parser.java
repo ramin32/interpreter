@@ -9,15 +9,10 @@
  *************************************************/
 package interpreter;
 
-import java.util.List;
-import java.util.Map;
 import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.ListIterator;
-import interpreter.Lexer;
-import interpreter.Token;
-import interpreter.Type;
-import interpreter.SymbolTable;
+import java.util.Map;
 
 public class Parser
 {
@@ -76,19 +71,17 @@ public class Parser
 
     private boolean isTypeAt(Type type, int... index)
     {
-        if (index.length == 0)
-            return tokens_.get(index_).isType(type);
-        else
-        {
-            if(index[0] >= tokens_.size())
-                return false;
-            return tokens_.get(index[0]).isType(type);
-        }
+        int i = index_;
+        if (index.length > 0)
+            i = index[0];
+        if(i == 4)
+        	System.out.println();
+
+        return tokens_.get(i).isType(type);
     }
 
     private void parseStatement()
     {
-        
         if(indexInRange(index_ + 1))
         {
             if(isTypeAt(Type.ASSIGNMENT, index_ + 1))
@@ -104,12 +97,14 @@ public class Parser
                 index_++;
                 System.out.println(parseExpression()); 
             }
+            return;
         }
 
-                else if(isTypeAt(Type.HALT))
+        if(isTypeAt(Type.HALT))
             System.exit(0);
         else if(isTypeAt(Type.IF) || isTypeAt(Type.IF_FALSE))
         {
+            System.out.println("Parsing boolean exp");
             parseBooleanStatement();
         }
 
@@ -134,7 +129,9 @@ public class Parser
     {
         Token booleanToken = tokens_.get(index_);
         index_++;
+        System.out.println("Processing booleanToken: " + booleanToken);
         boolean b = (Boolean) parseExpression(); 
+        System.out.println("Boolean expr = " + b);
         if(booleanToken.isType(Type.IF))
         {
             if(b)

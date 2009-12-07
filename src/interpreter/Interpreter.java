@@ -1,10 +1,6 @@
 package interpreter;
 
-import interpreter.Parser;
-import interpreter.Lexer;
-import interpreter.Token;
 import java.util.List;
-import java.util.ArrayList;
 
 
 public class Interpreter

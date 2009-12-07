@@ -1,12 +1,7 @@
 package interpreter;
 
-import java.util.List;
-import java.util.Map;
 import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Scanner;
-import interpreter.Lexer;
-import interpreter.Token;
+import java.util.Map;
 
 public class SymbolTable
 {

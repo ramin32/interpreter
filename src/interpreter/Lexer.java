@@ -1,12 +1,8 @@
 package interpreter;
-import interpreter.Token;
-import interpreter.Type;
-import java.util.Scanner;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Scanner;
     
 public class Lexer
 {
@@ -14,20 +10,13 @@ public class Lexer
     {
         try
         {
-            String[] inputList = new Scanner(new File(fileName)).
-                                     useDelimiter("\\Z+").
-                                     next().
-                                     split("\\s+");
-
+            Scanner scanner = new Scanner(new File(fileName)).useDelimiter("\\s+");
             List<Token> tokens = new ArrayList<Token>();
 
-            for(String input: inputList)
+            while(scanner.hasNext())
             {
+                String input = scanner.next();                
                 Token token = Token.constructToken(input);
-                if(token == null)
-                {
-                    throw new RuntimeException("Syntax error: " + input);
-                }
                 tokens.add(token);
             }
 
