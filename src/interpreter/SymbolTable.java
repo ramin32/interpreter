@@ -23,6 +23,7 @@ public class SymbolTable
 
     public void addLabelMapping(Map<String, Integer> labels)
     {
+        System.out.println(labelTable_);
         labelTable_.putAll(labels);
     }
 

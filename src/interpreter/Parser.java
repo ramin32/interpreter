@@ -79,26 +79,35 @@ public class Parser
         if (index.length == 0)
             return tokens_.get(index_).isType(type);
         else
+        {
+            if(index[0] >= tokens_.size())
+                return false;
             return tokens_.get(index[0]).isType(type);
+        }
     }
 
     private void parseStatement()
     {
-        if(isTypeAt(Type.ASSIGNMENT, index_ + 1))
-            parseAssignment();
-        else if(isTypeAt(Type.PRINT))
+        
+        if(indexInRange(index_ + 1))
         {
-            index_++;
-            System.out.println(parseExpression()); 
+            if(isTypeAt(Type.ASSIGNMENT, index_ + 1))
+                parseAssignment();
+            else if(isTypeAt(Type.GOTO))
+            {
+                index_ = symbolTable_.lookupLabel(tokens_.get(index_ + 1).getValue());
+                parseProgram();
+                return;
+            }
+            else if(isTypeAt(Type.PRINT))
+            {
+                index_++;
+                System.out.println(parseExpression()); 
+            }
         }
-        else if(isTypeAt(Type.HALT))
+
+                else if(isTypeAt(Type.HALT))
             System.exit(0);
-        else if(isTypeAt(Type.GOTO))
-        {
-            index_ = symbolTable_.lookupLabel(tokens_.get(index_ + 1).getValue());
-            parseProgram();
-            return;
-        }
         else if(isTypeAt(Type.IF) || isTypeAt(Type.IF_FALSE))
         {
             parseBooleanStatement();
@@ -146,22 +155,29 @@ public class Parser
 
     private Object parseExpression()
     {
-        Token token = tokens_.get(index_ + 1);
-        if(token.containedIn(Type.OPERATORS))
+        if(indexInRange(index_ + 3))
         {
-            Object result = token.getType().evaluate((Double) parseValueAt(), 
-                                                     (Double) parseValueAt(index_ + 2));
-            index_ += 3;
-            return result;
+            Token token = tokens_.get(index_ + 1);
+            if(token.containedIn(Type.OPERATORS))
+            {
+                Object result = token.getType().evaluate((Double) parseValueAt(), 
+                                                         (Double) parseValueAt(index_ + 2));
+                index_ += 3;
+                return result;
+            }
         }
         index_++;
         return parseValueAt(index_ - 1);
-
     } 
+
+    private boolean indexInRange(int index)
+    {
+        return index < tokens_.size();
+    }
 
     private Object parseValueAt(int...index)
     {
-        int i = 0;
+        int i = index_;
         if(index.length > 0)
             i = index[0];
         if(isTypeAt(Type.IDENTIFIER, i))

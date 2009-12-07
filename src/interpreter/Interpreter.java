@@ -18,5 +18,6 @@ public class Interpreter
         }
         List<Token> tokens = Lexer.tokenizeFile(args[0]);
         Parser parser = new Parser(tokens);
+        parser.parse();
     }
 }
