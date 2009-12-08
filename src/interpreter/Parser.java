@@ -6,6 +6,8 @@
  * Program -> Statement Program | EOF
  * Statement -> Assignment | print Expression | halt | goto label
  *              | BooleanExpr 
+ * Expression -> Factor | Factor op Factor
+ * Factor -> id | boolean | float
  * Assignment -> id = Expression
  * BooleanExpr -> if Expression Statement 
  *                | iffalse Expression Statement
@@ -170,8 +172,8 @@ public class Parser
             Token token = tokens_.get(index_ + 1);
             if(token.containedIn(Type.OPERATORS))
             {
-                Object operand1 = parseValueAt();
-                Object operand2 = parseValueAt(index_ + 2);
+                Object operand1 = parseFactorAt();
+                Object operand2 = parseFactorAt(index_ + 2);
                 Object result = null;
                 if(operand1 instanceof Boolean && operand2 instanceof Boolean)
                     result = token.getType().evaluate((Boolean) operand1,(Boolean) operand2);
@@ -190,12 +192,12 @@ public class Parser
         if(isTypeAt(Type.MINUS))
         {
             index_ += 2;
-            return - (Double) parseValueAt(index_ - 1);
+            return - (Double) parseFactorAt(index_ - 1);
 
         }
 
         index_++;
-        return parseValueAt(index_ - 1);
+        return parseFactorAt(index_ - 1);
     } 
 
     private boolean indexInRange(int index)
@@ -203,7 +205,7 @@ public class Parser
         return index < tokens_.size();
     }
 
-    private Object parseValueAt(int...index)
+    private Object parseFactorAt(int...index)
     {
         int i = index_;
         if(index.length > 0)
