@@ -1,3 +1,11 @@
+/*************************************************************************
+ * SymbolTable.java
+ * Desc: Symbol table for inserting and looking up identifiers or labels.
+ *
+ * Ramin Rakhamimov
+ * CIS 707
+ * Interpreter Project
+ *************************************************************************/
 package interpreter;
 
 import java.util.HashMap;

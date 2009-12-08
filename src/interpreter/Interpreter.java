@@ -1,7 +1,15 @@
+/************************************
+ * Interpreter.java
+ * Desc: runs the interpreter.
+ *
+ * Ramin Rakhamimov
+ * CIS 707
+ * Interpreter Project
+ ************************************/
+
 package interpreter;
 
 import java.util.List;
-
 
 public class Interpreter
 {

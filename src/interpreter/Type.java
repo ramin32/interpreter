@@ -1,3 +1,14 @@
+/*****************************************************************
+ * Type.java
+ * Desc: Enumeration for different types of tokens
+ *       Contains regular expressions for each type.
+ *       Implements arithmatic and boolean evaluation methods for
+ *       appropriate operators.
+ *
+ * Ramin Rakhamimov
+ * CIS 707
+ * Interpreter Project
+ ****************************************************************/
 package interpreter;
 
 import java.util.Arrays;

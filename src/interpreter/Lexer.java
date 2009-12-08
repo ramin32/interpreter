@@ -1,3 +1,14 @@
+/***********************************************************
+ * Lexer.java
+ * Desc: Performs lexical analysis on a given file.
+ *       Uses patterns from Type class to discern  between
+ *       the different token types.
+ *
+ * Ramin Rakhamimov
+ * CIS 707
+ * Interpreter Project
+ **********************************************************/
+
 package interpreter;
 import java.io.File;
 import java.util.ArrayList;
