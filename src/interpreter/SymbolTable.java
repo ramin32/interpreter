@@ -18,7 +18,6 @@ public class SymbolTable
 
     public void addLabelMapping(Map<String, Integer> labels)
     {
-        System.out.println(labelTable_);
         labelTable_.putAll(labels);
     }
 
@@ -29,7 +28,7 @@ public class SymbolTable
 
     public void addIdentifier(String id, Object value)
     {
-        if(!(value instanceof Double || value instanceof Boolean))
+        if(!(value instanceof Double || value instanceof Boolean || value instanceof Character))
             throw new IllegalArgumentException("Illegal data type: " + value);
         identifierTable_.put(id, value);
     }

@@ -1,3 +1,6 @@
-     if 11 > 10 
-     print 11 
-
+    x = 0
+ L1: print x
+    x = x + 1
+    if x > 10
+    halt
+    goto L1
