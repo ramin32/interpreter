@@ -1,0 +1,12 @@
+Three Address Code Interpreter (Wikipedia)
+
+Interpretes the following grammar:
+
+ Program -> [label:] Statement Program | EOF
+ Statement -> Assignment | print Expression | halt | goto label
+              | BooleanExpr
+ Expression -> Factor | Factor op Factor
+ Factor -> id | boolean | float
+ Assignment -> id = Expression
+ BooleanExpr -> if Expression Statement
+                 | iffalse Expression Statement
